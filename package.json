@@ -1,0 +1,21 @@
+{
+  "name": "dark-mode-listener",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": "LinusU/node-dark-mode-listener",
+  "scripts": {
+    "test": "standard"
+  },
+  "dependencies": {
+    "signal-exit": "^3.0.2"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "os": [
+    "darwin"
+  ]
+}
