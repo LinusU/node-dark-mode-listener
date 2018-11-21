@@ -34,3 +34,7 @@ Holds the current value, either `'light'` or `'dark'`. This property will be `un
 ### `.stop()`
 
 Stop listening for changes.
+
+## Implementation
+
+This package ships with a small binary, [dark-mode-listener](https://github.com/LinusU/DarkModeListener), to listen to the changes.
