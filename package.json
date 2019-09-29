@@ -16,6 +16,7 @@
     "node": ">=6"
   },
   "os": [
-    "darwin"
+    "darwin",
+    "linux"
   ]
 }
