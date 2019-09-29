@@ -37,4 +37,4 @@ Stop listening for changes.
 
 ## Implementation
 
-This package ships with a small binary, [dark-mode-listener](https://github.com/LinusU/DarkModeListener), to listen to the changes.
+This package ships with a small binary, [dark-mode-listener](https://github.com/LinusU/DarkModeListener) for macOS and [dark-mode-listener-windows](https://github.com/flostellbrink/dark-mode-listener-windows) for Windows, to listen to the changes.
