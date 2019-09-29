@@ -3,9 +3,9 @@ const { spawn } = require('child_process')
 const { EventEmitter } = require('events')
 const onExit = require('signal-exit')
 
-const { platform } = process;
+const { platform } = process
 
-let bin;
+let bin
 
 if (platform === 'linux') {
   bin = path.join(__dirname, 'dark-mode-listener-linux')
