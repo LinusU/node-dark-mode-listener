@@ -1,18 +1,45 @@
+const os = require('os')
 const path = require('path')
 const { spawn } = require('child_process')
 const { EventEmitter } = require('events')
 const onExit = require('signal-exit')
 
-const bin = path.join(__dirname, 'dark-mode-listener')
-const child = spawn(bin, [], { stdio: ['ignore', 'pipe', 'ignore'] })
+const kChild = Symbol('child')
 
-onExit(() => child.kill())
+function start () {
+  switch (os.platform()) {
+    case 'darwin': {
+      const bin = path.join(__dirname, 'dark-mode-listener')
+      return spawn(bin, [], { stdio: ['ignore', 'pipe', 'ignore'] })
+    }
+    case 'win32': {
+      const bin = path.join(__dirname, 'dark-mode-listener.vbs')
+      return spawn('cscript.exe', ['/Nologo', bin], { stdio: ['ignore', 'pipe', 'ignore'] })
+    }
+  }
+}
 
-child.stdout.setEncoding('utf8')
-child.stdout.on('data', (chunk) => {
-  module.exports.currentValue = chunk.trim()
-  module.exports.emit('change', chunk.trim())
-})
+class DarkModeListener extends EventEmitter {
+  constructor () {
+    super()
 
-module.exports = new EventEmitter()
-module.exports.stop = () => child.kill()
+    const child = start()
+    if (!child) return
+
+    onExit(() => child.kill())
+
+    child.stdout.setEncoding('utf8')
+    child.stdout.on('data', (chunk) => {
+      this.currentValue = chunk.trim()
+      this.emit('change', chunk.trim())
+    })
+
+    this[kChild] = child
+  }
+
+  stop () {
+    if (this[kChild]) this[kChild].kill()
+  }
+}
+
+module.exports = new DarkModeListener()
