@@ -1,6 +1,6 @@
 {
   "name": "dark-mode-listener",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "repository": "LinusU/node-dark-mode-listener",
   "scripts": {
